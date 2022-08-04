@@ -1,5 +1,5 @@
 class Carro:
-    def init(self, nome1, cor1, placa1, ligado=False, andando=False):
+    def __init__(self, nome1, cor1, placa1, ligado=False, andando=False):
         self.nome = nome1
         self.cor = cor1
         self.placa = placa1
@@ -33,3 +33,8 @@ class Carro:
             return print(f'{self.nome} já está parado...')
         self.andando = False
         print(f'{self.nome} parou...')
+
+
+
+c1 = Carro('Palio', 'Preta', 'IU12Y4')
+print(c1.nome, c1.placa, c1.cor, c1.ligado, c1.andando)
