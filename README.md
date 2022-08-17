@@ -1,10 +1,78 @@
-# Repositório Python
+# Aprendendo Markdown
+# Titulo 1
+### Titulo 3
+###### Titulo 6
 
-#### Aulas 
-1.  Aula 01 
-    - Trabalhando com if / elif / else
-2.  Aula 02 
-    - Trabalhando com if / elif / else
+Aprendendo a usar arquivos MD
 
-#### Exercícios 
-1. Lista de Exercícios 07/07/2022
+
+Exemplo de Titulo Grande
+===
+
+**Negrito**   
+_Italico_  
+*Italico*
+
+# Lista
+- So usar o traço
+- Assim 
+- Completo
+    - lista 2
+    - teste
+        - Teste
+
+
+OK? 
+
+#### Listas Ordenadas
+1. Lista
+1. Lista 
+1. Lista
+    1. Lista
+    1. Lista
+
+
+ok? 
+
+#### CODIGO
+
+##### INLINE
+` Crase para codigo em linha ` 
+
+#### BLOCO
+``` java
+    if (10 > 4 ){
+        return 
+    }else{
+        return
+    }
+```
+
+ok? 
+#### CITAÇÕES
+
+> Isto é uma citação.  
+
+ok?
+
+
+#### LINKS
+[QUERO QUE APAREÇA](https://quattrofintech.github.io)
+
+
+https://teste.com
+
+
+#### IMG
+![IMAGEM](README.png)
+
+#### Linha Horizontal
+---
+
+
+## Texto Centralizado
+<center>TEXTO CENTRALIZADO</center>
+
+# Saiba Mais
+[Leia](https://markdown.net.br/sintaxe-basica/#html-best-practices)  
+[Leia tbm](https://docs.pipz.com/central-de-ajuda/learning-center/guia-basico-de-markdown#open)
