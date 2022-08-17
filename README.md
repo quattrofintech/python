@@ -57,10 +57,10 @@ ok?
 
 
 #### LINKS
-[QUERO QUE APAREÇA](https://quattrofintech.github.io)
+[QUERO QUE APAREÇA](https://github.com/quattrofintech/python)
 
 
-https://teste.com
+https://github.com/quattrofintech/python
 
 
 #### IMG
