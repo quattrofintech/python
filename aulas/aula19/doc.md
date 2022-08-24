@@ -17,24 +17,22 @@
     # protected
     - private
 
-
-
----
+--- 
 
 # CASA
-
 ## Cliente
     - codigo
     + nome
     + sexo
     + telefone
     + endereco
----
+--- 
     + gerar_codigo_usuario()
     + atualizar_endereco()
     + atualizar_telefone()
     + listar_cliente()
     
+
 ## Funcionario
     - codigo
     + nome
@@ -43,13 +41,14 @@
     + endereco
     + horas_trabalhadas
     - salario
----
+--- 
     + gerar_codigo_funcionario()
     + atualizar_endereco()
     + atualizar_telefone()
     + listar_funcionario()
     + adicionar_horas_trabalhadas(horas)
     + calcular_salario()
+
 
 ## Animais
     - animal = ['Cachorro', 'Gato', 'Tartaruga', 'Pássaro', 'Peixe']: attr classe
@@ -58,7 +57,7 @@
     + sexo
     + animal: int
     + peso
----
+--- 
     + gerar_codigo_animal()
     + listar_animal()
     + adicionar_peso(peso)
