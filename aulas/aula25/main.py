@@ -1,4 +1,4 @@
-from banco import Cliente, Conta, Historico
+from banco import Cliente, Conta
 
 c1 = Cliente("Matheus F.", "123.654.987-96")
 cc1 = Conta(4321, 100, c1)
