@@ -57,9 +57,9 @@ def fatorial():
         calculo.set('Digite um número válido')            
     else:
         num1 = int(txtNum1.get().strip())
-        resul = 0
+        resul = num1
         for num in range(num1-1, 0, -1):
-            resul = num1 * num
+            resul *= num
         calculo.set(resul)  
             
 
