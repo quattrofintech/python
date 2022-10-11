@@ -69,9 +69,12 @@ Button(run, text='SALVAR', font='Arial 14', command=salvar).pack()
 carregarArquivo()
 run.mainloop()
 
-
 ''' 
     1 - Lista de telefones 
     2 - Nomes
     3 - Histórico de Calculadora
+    15 + 5
+    - > SAIDA
+    15 + 5 = 20
+    20 x 2 = 40
 '''
