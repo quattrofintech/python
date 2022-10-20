@@ -2,7 +2,7 @@
 from msilib.schema import Font
 from tkinter import *
 from tkinter import messagebox
-from tkinter.ttk import Combobox
+from tkinter.ttk import Combobox, Treeview
 
 # DEFs
 def msg(msg):
@@ -15,12 +15,12 @@ def iniciarComboProdutos():
         cmbProdutos.append(f"{produto['codigo']}_{produto['descricao']}")
         # ['654321_Pneus', '789456_Graxa', '987561_Volante']
 
-def inserirProduto():
+def inserirProduto(event):
+    print(event)
     if  slctProdutos.current() == 0:
         msg('Selecione um PRODUTO')
     else:
-        print('Produto Inserirdo com Sucesso')
-        #slctProdutos.set('SELECIONE UM PRODUTO')
+        #print('Produto Inserirdo com Sucesso')
         try:
             qnt = int(txtQnt.get())
         except:
@@ -37,12 +37,13 @@ def inserirProduto():
                 except:
                     pass
                 else:
-                    print(ps[0])
-                    print(ps[1])
-                    print(ps[2])
-                    #print(ps[3])
-                    #print(ps[4])
-                    print(f"COD {ps[0]} - {ps[1]} - QNT {qnt} x R${ps[2]} ..... R${qnt*ps[2]}")
+                    tabelaCompra.insert('', END, values=(ps['codigo'], ps['descricao'], ps['preco'], qnt, qnt*ps['preco']))
+                    slctProdutos.set('SELECIONE UM PRODUTO')
+                    slctProdutos.focus()
+                    lblTotal.config(text=f'R$ {verificarSaldo()}')
+                    txtQnt.delete(0, END)
+                    txtQnt.insert(0, 1)
+                    #print(f"COD {ps['codigo']} - {ps['descricao']} - QNT {qnt} x R${ps['preco']} ..... R${qnt*ps['preco']}")
             else:
                 msg('Estoque INSUFICIENTE')
 
@@ -56,14 +57,14 @@ def verificarQuantidade(codigo, qnt):
 def retornarProdutoCompleto(codigo):
     for produto in produtos:
         if produto['codigo'] == codigo:
-            return [
-                produto['codigo'],
-                produto['descricao'],
-                produto['preco'],
-                produto['qnt'], 
-                produto['stqMin']
-            ]
+            return produto
     
+def verificarSaldo():
+    total = 0
+    for i in tabelaCompra.get_children():
+        total += float(tabelaCompra.item(i, 'values')[4])
+    return round(total, 2)
+
 # VARs
 produtos = [
     {
@@ -75,7 +76,7 @@ produtos = [
     },
     {
         'codigo': 789456,
-        'descricao': 'Graxa',
+        'descricao': 'Graxa Outros Produto Com nome Grande',
         'preco': 23.32,
         'qnt': 80,
         'stqMin': 5
@@ -83,12 +84,13 @@ produtos = [
     {
         'codigo': 987561,
         'descricao': 'Volante',
-        'preco': 23.32,
+        'preco': 58.10,
         'qnt': 20,
         'stqMin': 5
     },
 ]
 cmbProdutos = []
+headTabela = ['CODIGO', 'DESCRIÇÃO', 'R$ UNT', 'QNT', 'TOTAL']
 
 # GUI
 tela = Tk()
@@ -98,6 +100,7 @@ telaX = tela.winfo_screenwidth()
 telaY = tela.winfo_screenheight()
 posX = int((telaX - janelaX) / 2)
 posY = int((telaY - janelaY) / 2) - 10
+tela.title('AutoPeças Já')
 tela.geometry(f'{janelaX}x{janelaY}+{posX}+{posY}')
 tela.resizable(False, False) # (X , Y)
 
@@ -108,17 +111,36 @@ slctProdutos.set('SELECIONE UM PRODUTO')
 
 txtQnt = Entry(tela, font='Arial 18')
 
-btnInserir = Button(tela, text='INSERIR', font='Arial 14', command=inserirProduto)
+btnInserir = Button(tela, text='INSERIR', font='Arial 14')
+
+tabelaCompra = Treeview(tela, columns=(0, 1, 2, 3, 4), show='headings')
+
+for i in range(len(headTabela)):
+    tabelaCompra.heading(i, text=headTabela[i])
+    tabelaCompra.column(i, width=len(headTabela[i])*15, minwidth=50)
+
+lblTotal = Label(tela, font='Arial 16')
 
 # EXIBIR
+#tela.bind('<F7>', inserirProduto)
+
 slctProdutos.grid(row=0, columnspan=3, padx=10, pady=10)
 slctProdutos.focus()
 
 Label(tela, text='QNT', font='Arial 14').grid(row=1, column=0, padx=10, pady=10)
 txtQnt.grid(row=1, column=1, padx=10, pady=10)
+txtQnt.bind('<Return>', inserirProduto) # Enter / Leave / FocusIn / FocusOut
 txtQnt.insert(0, 1)
 
 btnInserir.grid(row=2, column=0, padx=10, pady=10)
+btnInserir.bind("<Button-1>", inserirProduto) # 
+btnInserir.bind("<Button-3>", inserirProduto) # 
+btnInserir.bind("<Return>", inserirProduto) # 
+
+tabelaCompra.grid(row=3, columnspan=3, padx=10, pady=10)
+
+lblTotal.grid(row=4, columnspan=3, padx=10, pady=10)
+
 
 tela.mainloop()
 
